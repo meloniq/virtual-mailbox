@@ -1,0 +1,214 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Virtual Mailbox\n"
+"POT-Creation-Date: 2025-02-03 21:36+0100\n"
+"PO-Revision-Date: 2025-01-13 11:59+0100\n"
+"Last-Translator: MELONIQ.NET\n"
+"Language-Team: MELONIQ.NET\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 3.5\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_nx:1,2;_x:1,2c;_ex:1,2c;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:1,2,3c\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: src/AdminPage.php:24 src/AdminPage.php:25 src/AdminPage.php:40
+msgid "Virtual Mailbox"
+msgstr ""
+
+#: src/EmailSingle.php:45
+msgid "Email Data"
+msgstr ""
+
+#: src/EmailSingle.php:48
+msgid "Email Body"
+msgstr ""
+
+#: src/EmailSingle.php:73
+msgid "Subject:"
+msgstr ""
+
+#: src/EmailSingle.php:74
+msgid "Content Type:"
+msgstr ""
+
+#: src/EmailSingle.php:75
+msgid "From:"
+msgstr ""
+
+#: src/EmailSingle.php:76
+msgid "To:"
+msgstr ""
+
+#: src/EmailSingle.php:77
+msgid "CC:"
+msgstr ""
+
+#: src/EmailSingle.php:78
+msgid "BCC:"
+msgstr ""
+
+#: src/EmailSingle.php:79
+msgid "Date:"
+msgstr ""
+
+#: src/EmailSingle.php:80
+msgid "Slug:"
+msgstr ""
+
+#: src/EmailSingle.php:81
+msgid "User ID:"
+msgstr ""
+
+#: src/EmailSingle.php:82
+msgid "User Name:"
+msgstr ""
+
+#: src/ListTable.php:51
+msgctxt "email subject"
+msgid "Subject"
+msgstr ""
+
+#: src/ListTable.php:52
+msgctxt "email recipients (To:)"
+msgid "Recipients"
+msgstr ""
+
+#: src/ListTable.php:53
+msgctxt "email date"
+msgid "Date"
+msgstr ""
+
+#: src/ListTable.php:135
+#, php-format
+msgid "%s email permanently deleted."
+msgid_plural "%s emails permanently deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/ListTable.php:137
+#, php-format
+msgid "%s email moved to the Trash."
+msgid_plural "%s emails moved to the Trash."
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/ListTable.php:139
+#, php-format
+msgid "%s email restored from the Trash."
+msgid_plural "%s emails restored from the Trash."
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/ListTable.php:163
+msgctxt "preview email"
+msgid "Preview"
+msgstr ""
+
+#: src/ListTable.php:169
+msgctxt "delete email"
+msgid "Delete"
+msgstr ""
+
+#: src/PostType.php:24 src/PostType.php:26
+msgid "Emails"
+msgstr ""
+
+#: src/PostType.php:25
+msgid "Email"
+msgstr ""
+
+#: src/PostType.php:27
+msgid "Search email"
+msgstr ""
+
+#: src/PostType.php:28
+msgid "Add New"
+msgstr ""
+
+#: src/PostType.php:29
+msgid "Add New Email"
+msgstr ""
+
+#: src/PostType.php:30
+msgid "Edit Email"
+msgstr ""
+
+#: src/PostType.php:31
+msgid "New Email"
+msgstr ""
+
+#: src/PostType.php:32
+msgid "View Email"
+msgstr ""
+
+#: src/PostType.php:33
+msgid "Search Emails"
+msgstr ""
+
+#: src/PostType.php:34
+msgid "No emails found"
+msgstr ""
+
+#: src/PostType.php:35
+msgid "No emails found in Trash"
+msgstr ""
+
+#: src/PostType.php:36
+msgid "Parent Email:"
+msgstr ""
+
+#: src/PostType.php:58
+msgid "Keep temporary records of emails."
+msgstr ""
+
+#: src/Settings.php:25
+msgid "General Settings"
+msgstr ""
+
+#: src/Settings.php:46
+msgid "Settings for the virtual mailbox."
+msgstr ""
+
+#: src/Settings.php:64 src/Settings.php:76
+msgid "Days limit"
+msgstr ""
+
+#: src/Settings.php:65 src/Settings.php:156
+msgid "Enter the number of days to keep emails."
+msgstr ""
+
+#: src/Settings.php:101 src/Settings.php:113
+msgid "Store unknown recipient emails"
+msgstr ""
+
+#: src/Settings.php:102 src/Settings.php:171
+msgid "Store emails of users that are not registered on the site."
+msgstr ""
+
+#: src/Settings.php:135
+msgid "Shortcode"
+msgstr ""
+
+#: src/Settings.php:182
+msgid "Use the following shortcode to display the mailbox:"
+msgstr ""
+
+#: src/Shortcode.php:40
+msgid "Login to view mailbox"
+msgstr ""
+
+#: src/Shortcode.php:63
+msgid "Subject"
+msgstr ""
+
+#: src/Shortcode.php:63
+msgid "Date"
+msgstr ""

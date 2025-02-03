@@ -1,0 +1,24 @@
+#vmbx_email_data {
+	color: #606266;
+	font-size: 14px;
+	padding: 15px 20px;
+	word-break: break-all;
+}
+
+#vmbx_email_data ul li {
+	border-bottom: 1px solid #ebeef4;
+	margin-bottom: 10px;
+	padding: 10px 0;
+	width: 48%;
+}
+
+#vmbx_email_data ul li,
+#vmbx_email_data ul li>div {
+	display: inline-block;
+}
+
+#vmbx_email_data ul li .item_header {
+	font-weight: 500;
+	min-width: 50px;
+	padding-right: 10px;
+}

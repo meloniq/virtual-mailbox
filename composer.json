@@ -1,0 +1,17 @@
+{
+    "name": "meloniq/virtual-mailbox",
+    "description": "Virtual Mailbox - log all outgoing emails, and allow to browse them.",
+    "license": "GPL-2.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "Meloniq\\VirtualMailbox\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "meloniq",
+            "email": "meloniq@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
