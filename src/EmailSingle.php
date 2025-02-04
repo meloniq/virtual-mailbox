@@ -68,6 +68,7 @@ class EmailSingle {
 			'user_id'   => $post->post_author, // todo: edit link
 			'user_name' => get_the_author_meta( 'display_name', $post->post_author ),
 		);
+		$data = apply_filters( 'vmbx_metabox_email_data', $data, $post );
 
 		$headers = array(
 			'subject'   => __( 'Subject:', 'virtual-mailbox' ),
@@ -81,12 +82,15 @@ class EmailSingle {
 			'user_id'   => __( 'User ID:', 'virtual-mailbox' ),
 			'user_name' => __( 'User Name:', 'virtual-mailbox' ),
 		);
+		$headers = apply_filters( 'vmbx_metabox_email_data_headers', $headers );
 
 		echo '<ul>';
 		foreach ( $data as $key => $value ) {
 			$field_class = 'item_' . $key;
+			$header = isset( $headers[ $key ] ) ? $headers[ $key ] : $key;
+
 			echo '<li class="' . esc_attr( $field_class ) . '">';
-			echo '<div class="item_header">' . esc_html( $headers[ $key ] ) . '</div>';
+			echo '<div class="item_header">' . esc_html( $header ) . '</div>';
 			echo '<div class="item_content">' . esc_html( $value ) . '</div>';
 			echo '</li>';
 		}

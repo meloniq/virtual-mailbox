@@ -53,8 +53,12 @@ function setup() {
 	$virtual_mailbox['logger']    = new Logger();
 	$virtual_mailbox['cron']      = new Cron();
 	$virtual_mailbox['post-type'] = new PostType();
-	$virtual_mailbox['shortcode'] = new Shortcode();
-	$virtual_mailbox['frontend']  = new Frontend();
+
+	// Only in frontend.
+	if ( ! is_admin() ) {
+		$virtual_mailbox['shortcode'] = new Shortcode();
+		$virtual_mailbox['frontend']  = new Frontend();
+	}
 
 }
 add_action( 'after_setup_theme', 'Meloniq\VirtualMailbox\setup' );

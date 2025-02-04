@@ -153,6 +153,7 @@ class Logger {
 		}
 
 		$user_ids = array_unique( $user_ids );
+		$user_ids = apply_filters( 'vmbx_email_user_ids', $user_ids, $fields );
 
 		return $user_ids;
 	}
@@ -175,7 +176,7 @@ class Logger {
 		remove_all_filters( 'sanitize_vmbx_email_meta__vmbx_altbody' );
 
 		// allow plugins to add back some filtering
-		do_action( 'vmbx_email_pre_insert' );
+		do_action( 'vmbx_email_pre_insert', $user_id, $subject, $message, $fields );
 
 		// create post for message
 		$post_id = wp_insert_post( array(
@@ -201,7 +202,7 @@ class Logger {
 		}
 
 		// allow plugins to add more meta
-		do_action( 'vmbx_email_insert', $post_id );
+		do_action( 'vmbx_email_insert', $post_id, $user_id, $subject, $message, $fields );
 
 		return $post_id;
 	}
@@ -223,6 +224,8 @@ class Logger {
 		for ( $i = 0; $i < $length; $i++ ) {
 			$unique_id .= $chars[ wp_rand( 0, strlen( $chars ) - 1 ) ];
 		}
+
+		$unique_id = apply_filters( 'vmbx_email_id', $unique_id );
 
 		// make sure it's unique
 		$existing = get_page_by_path( $unique_id, OBJECT, 'vmbx_email' );

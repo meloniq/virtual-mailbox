@@ -73,6 +73,8 @@ class PostType {
 			'map_meta_cap'        => false,
 		);
 
+		$args = apply_filters( 'vmbx_post_type_args', $args );
+
 		// register the post type
 		register_post_type( 'vmbx_email', $args );
 	}
