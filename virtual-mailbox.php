@@ -40,24 +40,24 @@ require_once trailingslashit( dirname( __FILE__ ) ) . 'vendor/autoload.php';
  * @return void
  */
 function setup() {
-	global $virtual_mailbox;
+	global $vmbx_instance;
 
 	// Only in admin area.
 	if ( is_admin() ) {
-		$virtual_mailbox['admin-page']   = new AdminPage();
-		$virtual_mailbox['settings']     = new Settings();
-		$virtual_mailbox['list-table']   = new ListTable();
-		$virtual_mailbox['email-single'] = new EmailSingle();
+		$vmbx_instance['admin-page']   = new AdminPage();
+		$vmbx_instance['settings']     = new Settings();
+		$vmbx_instance['list-table']   = new ListTable();
+		$vmbx_instance['email-single'] = new EmailSingle();
 	}
 
-	$virtual_mailbox['logger']    = new Logger();
-	$virtual_mailbox['cron']      = new Cron();
-	$virtual_mailbox['post-type'] = new PostType();
+	$vmbx_instance['logger']    = new Logger();
+	$vmbx_instance['cron']      = new Cron();
+	$vmbx_instance['post-type'] = new PostType();
 
 	// Only in frontend.
 	if ( ! is_admin() ) {
-		$virtual_mailbox['shortcode'] = new Shortcode();
-		$virtual_mailbox['frontend']  = new Frontend();
+		$vmbx_instance['shortcode'] = new Shortcode();
+		$vmbx_instance['frontend']  = new Frontend();
 	}
 
 }
