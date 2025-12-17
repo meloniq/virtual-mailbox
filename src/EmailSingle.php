@@ -1,8 +1,17 @@
 <?php
+/**
+ * Virtual Mailbox Email Single class.
+ *
+ * @package Meloniq\VirtualMailbox
+ */
+
 namespace Meloniq\VirtualMailbox;
 
 use WP_Post;
 
+/**
+ * Email Single class for handling single email view in admin.
+ */
 class EmailSingle {
 
 	/**
@@ -13,17 +22,16 @@ class EmailSingle {
 	public function __construct() {
 		add_action( 'add_meta_boxes_vmbx_email', array( $this, 'add_meta_boxes' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
-
 	}
 
 	/**
 	 * Enqueue styles.
 	 *
-	 * @param string $hook
+	 * @param string $hook Current admin page hook.
 	 *
 	 * @return void
 	 */
-	public function enqueue_styles( string $hook ) : void {
+	public function enqueue_styles( string $hook ): void {
 		if ( 'post.php' !== $hook ) {
 			return;
 		}
@@ -37,25 +45,25 @@ class EmailSingle {
 	 * @return void
 	 */
 	public function add_meta_boxes() {
-		// remove default meta boxes
+		// remove default meta boxes.
 		remove_meta_box( 'submitdiv', 'vmbx_email', 'side' );
 		remove_meta_box( 'slugdiv', 'vmbx_email', 'normal' );
 
-		// display email data
+		// display email data.
 		add_meta_box( 'vmbx_email_data', __( 'Email Data', 'virtual-mailbox' ), array( $this, 'meta_box_email_data' ), 'vmbx_email', 'normal', 'high' );
 
-		// display email body
+		// display email body.
 		add_meta_box( 'vmbx_email_body', __( 'Email Body', 'virtual-mailbox' ), array( $this, 'meta_box_email_body' ), 'vmbx_email', 'normal', 'high' );
 	}
 
 	/**
 	 * Meta box: Email data.
 	 *
-	 * @param WP_Post $post
+	 * @param WP_Post $post Post object.
 	 *
 	 * @return void
 	 */
-	public function meta_box_email_data( WP_Post $post ) : void {
+	public function meta_box_email_data( WP_Post $post ): void {
 		$data = array(
 			'subject'   => get_the_title( $post->ID ),
 			'content'   => get_post_meta( $post->ID, '_vmbx_content-type', true ),
@@ -64,8 +72,8 @@ class EmailSingle {
 			'cc'        => get_post_meta( $post->ID, '_vmbx_cc', true ),
 			'bcc'       => get_post_meta( $post->ID, '_vmbx_bcc', true ),
 			'date'      => get_the_date( 'Y-m-d H:i:s', $post->ID ),
-			'slug'      => $post->post_name, // todo: view link
-			'user_id'   => $post->post_author, // todo: edit link
+			'slug'      => $post->post_name, // todo: view link.
+			'user_id'   => $post->post_author, // todo: edit link.
 			'user_name' => get_the_author_meta( 'display_name', $post->post_author ),
 		);
 		$data = apply_filters( 'vmbx_metabox_email_data', $data, $post );
@@ -87,7 +95,7 @@ class EmailSingle {
 		echo '<ul>';
 		foreach ( $data as $key => $value ) {
 			$field_class = 'item_' . $key;
-			$header = isset( $headers[ $key ] ) ? $headers[ $key ] : $key;
+			$header      = isset( $headers[ $key ] ) ? $headers[ $key ] : $key;
 
 			echo '<li class="' . esc_attr( $field_class ) . '">';
 			echo '<div class="item_header">' . esc_html( $header ) . '</div>';
@@ -100,16 +108,15 @@ class EmailSingle {
 	/**
 	 * Meta box: Email body.
 	 *
-	 * @param WP_Post $post
+	 * @param WP_Post $post Post object.
 	 *
 	 * @return void
 	 */
-	public function meta_box_email_body( WP_Post $post ) : void {
+	public function meta_box_email_body( WP_Post $post ): void {
 		$content = get_the_content( '', false, $post->ID );
 		$escaped = htmlspecialchars( $content, ENT_QUOTES, 'UTF-8' );
 
 		echo '<iframe srcdoc=\'' . esc_attr( $escaped ) . '\' frameborder="0" allowfullscreen="" style="width: 100%; height: 500px;">';
 		echo '</iframe>';
 	}
-
 }

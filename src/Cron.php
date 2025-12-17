@@ -1,8 +1,17 @@
 <?php
+/**
+ * Virtual Mailbox Cron class.
+ *
+ * @package Meloniq\VirtualMailbox
+ */
+
 namespace Meloniq\VirtualMailbox;
 
 use WP_Query;
 
+/**
+ * Cron class for scheduling tasks.
+ */
 class Cron {
 
 	/**
@@ -13,7 +22,6 @@ class Cron {
 	public function __construct() {
 		add_action( 'init', array( $this, 'schedule' ) );
 		add_action( 'vmbx_purge', array( $this, 'purge' ) );
-
 	}
 
 	/**
@@ -23,7 +31,7 @@ class Cron {
 	 */
 	public function schedule() {
 		$frequecy = apply_filters( 'vmbx_purge_frequency', 'daily' );
-		// make sure we have a schedule for purging old logs
+		// make sure we have a schedule for purging old logs.
 		if ( ! wp_next_scheduled( 'vmbx_purge' ) ) {
 			wp_schedule_event( time() + 10, $frequecy, 'vmbx_purge' );
 		}
@@ -34,7 +42,7 @@ class Cron {
 	 *
 	 * @return void
 	 */
-	public function purge() : void {
+	public function purge(): void {
 		$limit_days = (int) get_option( 'vmbx_days_limit' );
 		if ( empty( $limit_days ) ) {
 			return;
@@ -46,11 +54,11 @@ class Cron {
 	/**
 	 * Purge old email logs.
 	 *
-	 * @param int $limit_days
+	 * @param int $limit_days Days limit.
 	 *
 	 * @return void
 	 */
-	protected function _purge( int $limit_days ) : void {
+	protected function _purge( int $limit_days ): void {
 		if ( $limit_days < 1 ) {
 			return;
 		}
@@ -80,6 +88,4 @@ class Cron {
 			wp_delete_post( $post_id, true );
 		}
 	}
-
-
 }

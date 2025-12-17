@@ -1,8 +1,17 @@
 <?php
+/**
+ * Virtual Mailbox Shortcode class.
+ *
+ * @package Meloniq\VirtualMailbox
+ */
+
 namespace Meloniq\VirtualMailbox;
 
 use WP_Query;
 
+/**
+ * Shortcode class for displaying mailbox.
+ */
 class Shortcode {
 
 	/**
@@ -24,15 +33,15 @@ class Shortcode {
 	/**
 	 * Shortcode: Mailbox.
 	 *
-	 * @param array $atts
+	 * @param array $atts Shortcode attributes.
 	 *
 	 * @return string
 	 */
-	public function shortcode_mailbox( array $atts ) : string {
-		// get current user id
+	public function shortcode_mailbox( array $atts ): string {
+		// get current user id.
 		$user_id = get_current_user_id();
 
-		// for non logged in users, return login link
+		// for non logged in users, return login link.
 		if ( ! $user_id ) {
 			return sprintf(
 				'<a href="%s">%s</a>',
@@ -41,22 +50,22 @@ class Shortcode {
 			);
 		}
 
-		// display mailbox
+		// display mailbox.
 		return $this->display_mailbox( $user_id );
 	}
 
 	/**
 	 * Display mailbox.
 	 *
-	 * @param int $user_id
+	 * @param int $user_id User ID.
 	 *
 	 * @return string
 	 */
-	protected function display_mailbox( int $user_id ) : string {
-		// get emails for user
+	protected function display_mailbox( int $user_id ): string {
+		// get emails for user.
 		$emails = $this->get_emails( $user_id );
 
-		// display emails, table (title, date)
+		// display emails, table (title, date).
 		$output = '<table class="vmbx-emails-table">';
 
 		$output .= '<thead>';
@@ -74,7 +83,7 @@ class Shortcode {
 
 		$output .= '</table>';
 
-		// add pagination
+		// add pagination.
 		$output .= $this->pagination();
 
 		return $output;
@@ -83,24 +92,24 @@ class Shortcode {
 	/**
 	 * Get emails for user.
 	 *
-	 * @param int $user_id
+	 * @param int $user_id User ID.
 	 *
 	 * @return array
 	 */
-	protected function get_emails( int $user_id ) : array {
+	protected function get_emails( int $user_id ): array {
 		$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 
 		$args_query = array(
-			'post_type'      => 'vmbx_email',
-			'author'         => $user_id,
-			'orderby'        => 'date',
-			'order'          => 'DESC',
-			'paged'          => $paged,
+			'post_type' => 'vmbx_email',
+			'author'    => $user_id,
+			'orderby'   => 'date',
+			'order'     => 'DESC',
+			'paged'     => $paged,
 		);
 
 		$query = new WP_Query( $args_query );
 
-		// set pagination data
+		// set pagination data.
 		$this->max_num_pages = $query->max_num_pages;
 
 		return $query->posts;
@@ -111,7 +120,7 @@ class Shortcode {
 	 *
 	 * @return string
 	 */
-	protected function pagination() : string {
+	protected function pagination(): string {
 		$base    = esc_url_raw( str_replace( 999999999, '%#%', get_pagenum_link( 999999999, false ) ) );
 		$current = max( 1, get_query_var( 'paged' ) );
 		$total   = $this->max_num_pages;
@@ -131,12 +140,10 @@ class Shortcode {
 
 		$pagination = paginate_links( $args );
 
-		$output = '<div class="vmbx-pagination">';
+		$output  = '<div class="vmbx-pagination">';
 		$output .= $pagination;
 		$output .= '</div>';
 
 		return $output;
 	}
-
-
 }

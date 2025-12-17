@@ -31,7 +31,7 @@ define( 'VMBX_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'VMBX_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 
 // Include the autoloader so we can dynamically include the rest of the classes.
-require_once trailingslashit( dirname( __FILE__ ) ) . 'vendor/autoload.php';
+require_once trailingslashit( __DIR__ ) . 'vendor/autoload.php';
 
 
 /**

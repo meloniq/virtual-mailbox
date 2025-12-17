@@ -1,6 +1,17 @@
 <?php
+/**
+ * Virtual Mailbox Post Type class.
+ *
+ * @package Meloniq\VirtualMailbox
+ */
+
 namespace Meloniq\VirtualMailbox;
 
+/**
+ * Virtual Mailbox Post Type class.
+ *
+ * @package Meloniq\VirtualMailbox
+ */
 class PostType {
 
 	/**
@@ -9,9 +20,8 @@ class PostType {
 	 * @return void
 	 */
 	public function __construct() {
-		// register CPT early, so it beats other plugins that send emails on init
+		// register CPT early, so it beats other plugins that send emails on init.
 		add_action( 'init', array( $this, 'register' ), 1 );
-
 	}
 
 	/**
@@ -19,12 +29,11 @@ class PostType {
 	 *
 	 * @return void
 	 */
-	public function register() : void {
+	public function register(): void {
 		$labels = array(
 			'name'               => __( 'Emails', 'virtual-mailbox' ),
 			'singular_name'      => __( 'Email', 'virtual-mailbox' ),
 			'menu_name'          => __( 'Emails', 'virtual-mailbox' ),
-			'search_items'       => __( 'Search email', 'virtual-mailbox' ),
 			'add_new'            => __( 'Add New', 'virtual-mailbox' ),
 			'add_new_item'       => __( 'Add New Email', 'virtual-mailbox' ),
 			'edit_item'          => __( 'Edit Email', 'virtual-mailbox' ),
@@ -66,7 +75,11 @@ class PostType {
 			'hierarchical'        => false,
 			'has_archive'         => true,
 			'supports'            => array( '__nada__' ),
-			'rewrite'             => array( 'slug' => 'vmbx', 'with_front' => false, 'feeds' => false ),
+			'rewrite'             => array(
+				'slug'       => 'vmbx',
+				'with_front' => false,
+				'feeds'      => false,
+			),
 			'query_var'           => false,
 			'can_export'          => false,
 			'capabilities'        => $capabilities,
@@ -75,9 +88,7 @@ class PostType {
 
 		$args = apply_filters( 'vmbx_post_type_args', $args );
 
-		// register the post type
+		// register the post type.
 		register_post_type( 'vmbx_email', $args );
 	}
-
-
 }

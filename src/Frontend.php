@@ -1,8 +1,17 @@
 <?php
+/**
+ * Virtual Mailbox Frontend class.
+ *
+ * @package Meloniq\VirtualMailbox
+ */
+
 namespace Meloniq\VirtualMailbox;
 
 use WP_Post;
 
+/**
+ * Frontend class for handling email display on the frontend.
+ */
 class Frontend {
 
 	/**
@@ -19,17 +28,17 @@ class Frontend {
 	/**
 	 * Modify email content.
 	 *
-	 * @param string $content
+	 * @param string $content Original content.
 	 *
 	 * @return string
 	 */
-	public function email_content( string $content ) : string {
-		// check if we are on single email page
+	public function email_content( string $content ): string {
+		// check if we are on single email page.
 		if ( ! is_singular( 'vmbx_email' ) ) {
 			return $content;
 		}
 
-		// check if we are in the loop and main query
+		// check if we are in the loop and main query.
 		if ( ! in_the_loop() || ! is_main_query() ) {
 			return $content;
 		}
@@ -48,7 +57,7 @@ class Frontend {
 	 *
 	 * @return void
 	 */
-	public function limit_access() : void {
+	public function limit_access(): void {
 		if ( ! is_singular( 'vmbx_email' ) ) {
 			return;
 		}
@@ -58,13 +67,13 @@ class Frontend {
 			return;
 		}
 
-		// check if user is email author or admin
+		// check if user is email author or admin.
 		$user = wp_get_current_user();
 		if ( $user->ID === $post->post_author || current_user_can( 'manage_options' ) ) {
 			return;
 		}
 
-		// if not, redirect to login page
+		// if not, redirect to login page.
 		nocache_headers();
 		wp_redirect( wp_login_url( $this->get_current_url() ) );
 		exit;
@@ -75,8 +84,8 @@ class Frontend {
 	 *
 	 * @return void
 	 */
-	public function enqueue_styles() : void {
-		// enqueue styles only on page with shortcode
+	public function enqueue_styles(): void {
+		// enqueue styles only on page with shortcode.
 		if ( ! has_shortcode( get_the_content(), 'vmbx_mailbox' ) ) {
 			return;
 		}
@@ -96,6 +105,4 @@ class Frontend {
 
 		return $protocol . $http_host . $request_uri;
 	}
-
-
 }

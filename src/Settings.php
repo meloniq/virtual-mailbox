@@ -1,6 +1,15 @@
 <?php
+/**
+ * Virtual Mailbox Settings class.
+ *
+ * @package Meloniq\VirtualMailbox
+ */
+
 namespace Meloniq\VirtualMailbox;
 
+/**
+ * Settings class for managing plugin settings.
+ */
 class Settings {
 
 	/**
@@ -10,7 +19,6 @@ class Settings {
 	 */
 	public function __construct() {
 		add_action( 'admin_init', array( $this, 'init_settings' ), 10 );
-
 	}
 
 	/**
@@ -18,7 +26,7 @@ class Settings {
 	 *
 	 * @return void
 	 */
-	public function init_settings() : void {
+	public function init_settings(): void {
 		// Section: General Settings.
 		add_settings_section(
 			'vmbx_section',
@@ -42,7 +50,7 @@ class Settings {
 	 *
 	 * @return void
 	 */
-	public function render_section() : void {
+	public function render_section(): void {
 		esc_html_e( 'Settings for the virtual mailbox.', 'virtual-mailbox' );
 	}
 
@@ -51,7 +59,7 @@ class Settings {
 	 *
 	 * @return void
 	 */
-	public function register_field_days_limit() : void {
+	public function register_field_days_limit(): void {
 		$field_name    = 'vmbx_days_limit';
 		$section_name  = 'vmbx_section';
 		$settings_name = 'vmbx_settings';
@@ -88,7 +96,7 @@ class Settings {
 	 *
 	 * @return void
 	 */
-	public function register_field_store_unknown() : void {
+	public function register_field_store_unknown(): void {
 		$field_name    = 'vmbx_store_unknown';
 		$section_name  = 'vmbx_section';
 		$settings_name = 'vmbx_settings';
@@ -125,7 +133,7 @@ class Settings {
 	 *
 	 * @return void
 	 */
-	public function register_field_shortcode() : void {
+	public function register_field_shortcode(): void {
 		$field_name    = 'vmbx_shortcode';
 		$section_name  = 'vmbx_section';
 		$settings_name = 'vmbx_settings';
@@ -147,7 +155,7 @@ class Settings {
 	 *
 	 * @return void
 	 */
-	public function render_field_days_limit() : void {
+	public function render_field_days_limit(): void {
 		$field_name = 'vmbx_days_limit';
 
 		$days_limit = get_option( $field_name, '30' );
@@ -162,7 +170,7 @@ class Settings {
 	 *
 	 * @return void
 	 */
-	public function render_field_store_unknown() : void {
+	public function render_field_store_unknown(): void {
 		$field_name = 'vmbx_store_unknown';
 
 		$store_unknown = get_option( $field_name, false );
@@ -177,12 +185,10 @@ class Settings {
 	 *
 	 * @return void
 	 */
-	public function render_field_shortcode() : void {
+	public function render_field_shortcode(): void {
 		?>
 		<p><?php esc_html_e( 'Use the following shortcode to display the mailbox:', 'virtual-mailbox' ); ?></p>
 		<code>[vmbx_mailbox]</code>
 		<?php
 	}
-
-
 }
